@@ -90,7 +90,7 @@ void updateQ(double reward, int oldState, int newState, int actionIndex)
 	
 	
 
-void takeAction(int currentState, int actionIndex)
+int takeAction(int currentState, int actionIndex)
 {
   	double profit;
 	
@@ -123,25 +123,30 @@ void takeAction(int currentState, int actionIndex)
 	
 	updateQ(profit, oldState,newState, actionIndex);
 	
+	return newState;
+	
 	
 }
 
-void getRandomAction(int currentState)
+int getRandomAction(int currentState)
 {
+	int newState;
   	int randomActionIndex = rand() % (actionSpace - 0 + 1);
-	takeAction(currentState, randomActionIndex);
+	newState = takeAction(currentState, randomActionIndex);
+	return newState;
 }
   
   
 
-void chooseAction(int currState)
+int chooseAction(int currState)
 {
+  int newState;
   
   double rndVal = (float)(rand() % RAND_MAX);
   
   if (rndVal < epsilon)
     {
-      getRandomAction(currState);
+     newState =  getRandomAction(currState);
     }
   else
     {
@@ -155,7 +160,9 @@ void chooseAction(int currState)
 	    }
 	}
       
-      takeAction(currState, maxQValIndex);
+      newState = takeAction(currState, maxQValIndex);
+	  
+      return newState;
   }
       
       
@@ -166,16 +173,18 @@ void chooseAction(int currState)
   
   
 
-void startEpisode(int initialState)
+void startEpisode()
 {
-  
-  currentState = initialState;
+  currentState = getState(); 
+  int newState;
   
   clock_t timeStart = clock();
   
   do
     {
-      chooseAction(currentState);
+      
+      newState = chooseAction(currentState);
+      currentState = newState;
     } while((clock() - timeStart) / CLOCKS_PER_SEC >= 300);
 }
       
@@ -188,10 +197,8 @@ int main()
   
   for (int i = 0; i < episodes; i++)
     {
-      for (int j = 0; j < stateSpace; j++)
-	{
-	  startEpisode(getState());
-	}
+
+	  startEpisode();
     }
   
   //Printing the Q-table
