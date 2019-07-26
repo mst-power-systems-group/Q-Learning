@@ -71,14 +71,15 @@ int generateState(double load, double lmp)
 		return 11;
 }
 
-int getState()
-{
+//int getState()
+//{
 	//Haotian please get the LMP and the Load
 	
-	int currentState = generateState(/*load, lmp */);
+//	int currentState = generateState(/*load, lmp */);
 		
-	return currentState;
-}
+//	return currentState;
+//}
+
 	
 
 void updateQ(double reward, int oldState, int newState, int actionIndex)
@@ -132,8 +133,8 @@ int getRandomAction(int currentState)
 {
 	int newState;
   	int randomActionIndex = rand() % (actionSpace - 0 + 1);
-	 cout << "The action index is: " << randomActionIndex << endl;
-	//newState = takeAction(currentState, randomActionIndex);
+	cout << "The action index is: " << randomActionIndex << endl;
+	newState = takeAction(currentState, randomActionIndex);
 	return newState;
 }
   
@@ -164,7 +165,7 @@ int chooseAction(int currState)
 	
      cout << "The action index is:" << maxQValIndex << endl;
       
-     //newState = takeAction(currState, maxQValIndex);
+     newState = takeAction(currState, maxQValIndex);
 	  
      return newState;
   }
@@ -177,9 +178,9 @@ int chooseAction(int currState)
   
   
 
-void startEpisode()
+void startEpisode(double load, double lmp)
 {
-  currentState = getState(); 
+  int currentState = generateState(load, lmp); 
   int newState;
   
   clock_t timeStart = clock();
@@ -192,14 +193,7 @@ void startEpisode()
     } while((clock() - timeStart) / CLOCKS_PER_SEC >= 300);
 }
       
-  
-/**
- * void startEpisode(double load, double lmp)
- * {
- *	int currentState = generateState(load, lmp);
- *	newState = chooseAction(currentState);
- * }
- * 
+
   
   
 
