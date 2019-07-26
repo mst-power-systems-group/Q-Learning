@@ -132,7 +132,8 @@ int getRandomAction(int currentState)
 {
 	int newState;
   	int randomActionIndex = rand() % (actionSpace - 0 + 1);
-	newState = takeAction(currentState, randomActionIndex);
+	 cout << "The action index is: " << randomActionIndex << endl;
+	//newState = takeAction(currentState, randomActionIndex);
 	return newState;
 }
   
@@ -161,8 +162,9 @@ int chooseAction(int currState)
 	}
     }
 	
+     cout << "The action index is:" << maxQValIndex << endl;
       
-     newState = takeAction(currState, maxQValIndex);
+     //newState = takeAction(currState, maxQValIndex);
 	  
      return newState;
   }
@@ -191,6 +193,13 @@ void startEpisode()
 }
       
   
+/**
+ * void startEpisode(double load, double lmp)
+ * {
+ *	int currentState = generateState(load, lmp);
+ *	newState = chooseAction(currentState);
+ * }
+ * 
   
   
 
