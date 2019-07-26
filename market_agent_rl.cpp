@@ -19,7 +19,7 @@ int currentState;
 
 //vector<int> states {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 
-vector<vector<double>> Q(stateSpace, vector<double>(actionSpace, 0));
+vector<vector<double>> Q(stateSpace, vector<double>(actionSpace, 0.0));
 
 int generateState(double load, double lmp)
 {
