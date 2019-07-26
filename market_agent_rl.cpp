@@ -183,16 +183,16 @@ int startEpisode(double load, double lmp)
 {
   int currentState = generateState(load, lmp); 
   int newState;
+  int n = 0;
   
-  clock_t timeStart = clock();
+  //clock_t timeStart = clock();
   
-  do
-    {
+
       
       newState = (chooseAction(currentState)).first;
       currentState = newState;
       return choose(Action(currentState)).second;
-    } while((clock() - timeStart) / CLOCKS_PER_SEC >= 300);
+   // } while((clock() - timeStart) / CLOCKS_PER_SEC >= 300);
 	
 }
       
