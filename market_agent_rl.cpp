@@ -1,6 +1,6 @@
 #include <iostream>
 #include <ctime>
-#inlude <cstdlib>
+#include <cstdlib>
 #include <vector>
 
 using namespace std;
@@ -17,7 +17,7 @@ const int episodes = 1000;
 
 int currentState;
 
-vector<int> states {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+//vector<int> states {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 
 vector<vector<double>> Q(stateSpace, vector<double>(actionSpace, 0));
 
@@ -154,15 +154,17 @@ int chooseAction(int currState)
       
       for (int i = 0; i < actionSpace; i++)
 	{
-	  if (Q.at(currState).at(i) > max)
+	  if (Q.at(currState).at(i) > maxQValIndex)
 	    {
 	      maxQValIndex = i;
 	    }
 	}
+    }
+	
       
-      newState = takeAction(currState, maxQValIndex);
+     newState = takeAction(currState, maxQValIndex);
 	  
-      return newState;
+     return newState;
   }
       
       
@@ -214,6 +216,8 @@ int main()
   
   
   cout << endl;
+	
+  return 0;
   
 }
   
