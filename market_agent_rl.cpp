@@ -2,6 +2,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <vector>
+#include <utility>
 
 using namespace std;
 
@@ -129,18 +130,18 @@ int takeAction(int currentState, int actionIndex)
 	
 }
 
-int getRandomAction(int currentState)
+pair<int, int> getRandomAction(int currentState)
 {
 	int newState;
   	int randomActionIndex = rand() % (actionSpace - 0 + 1);
-	cout << "The action index is: " << randomActionIndex << endl;
+	//cout << "The action index is: " << randomActionIndex << endl;
 	newState = takeAction(currentState, randomActionIndex);
-	return newState;
+	return make_pair(newState, actionIndex);
 }
   
   
 
-int chooseAction(int currState)
+pair<int, int> chooseAction(int currState)
 {
   int newState;
   
@@ -148,7 +149,7 @@ int chooseAction(int currState)
   
   if (rndVal < epsilon)
     {
-     newState =  getRandomAction(currState);
+     newState =  (getRandomAction(currState)).first;
     }
   else
     {
@@ -163,11 +164,11 @@ int chooseAction(int currState)
 	}
     }
 	
-     cout << "The action index is:" << maxQValIndex << endl;
+     //cout << "The action index is:" << maxQValIndex << endl;
       
      newState = takeAction(currState, maxQValIndex);
 	  
-     return newState;
+     return make_pair(newState, maxQValIndex);
   }
       
       
@@ -178,7 +179,7 @@ int chooseAction(int currState)
   
   
 
-void startEpisode(double load, double lmp)
+int startEpisode(double load, double lmp)
 {
   int currentState = generateState(load, lmp); 
   int newState;
@@ -188,9 +189,11 @@ void startEpisode(double load, double lmp)
   do
     {
       
-      newState = chooseAction(currentState);
+      newState = (chooseAction(currentState)).first;
       currentState = newState;
+      return choose(Action(currentState)).second;
     } while((clock() - timeStart) / CLOCKS_PER_SEC >= 300);
+	
 }
       
 
