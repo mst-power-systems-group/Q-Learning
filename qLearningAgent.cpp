@@ -6,17 +6,17 @@
 
 using namespace std;
 
+srand((unsigned int)time(0));
 
 const int stateSpace = 12;
 const double gamma = 0.8;
 const double epsilon = 0.2;
 const double alpha = 0.1;
 const int actionSpace = 3;
-const int episodes = 1000;
+//const int episodes = 1000;
 
-int newState;
-
-int currentState = 1;
+vector<int> currentState(24, 1);
+vector<int> newState(24, 1);
 
 vector<vector<vector<double>>> Q(24, vector<vector<double>>(stateSpace, vector<double>(actionSpace, 0.0)));
 
@@ -137,15 +137,15 @@ vector<int> getAgentOfferPriceIndices(vector<double>& loadPred, vector<double>& 
   int getActionIndex;
 
 
-  srand((unsigned int)time(0));
+  
   
   for (int i = 0; i < 24; i++)
     {
-      newState = generateState(loadPred.at(i), lmpPred.at(i));
-      updateQ(i, rewards.at(i), currentState, newState, bids.at(i));
+      newState.at(i) = generateState(loadPred.at(i), lmpPred.at(i));
+      updateQ(i, rewards.at(i), currentState.at(i), newState.at(i), bids.at(i));
 
-      currentState = newState;
-      getActionIndex = chooseAction(i, currentState);
+      currentState.at(i) = newState.at(i);
+      getActionIndex = chooseAction(i, currentState.at(i));
       bidIndex.at(i) = getActionIndex;
       
     }
