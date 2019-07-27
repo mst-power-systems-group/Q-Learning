@@ -1,6 +1,6 @@
 #include <vector>
 
-
+using namespace std;
 
 vector<int> getAgentOfferPriceIndices(vector<double>& loadPred, vector<double>& lmpPred, vector<double>& rewards);
 
