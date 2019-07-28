@@ -2,11 +2,10 @@
 #include <ctime>
 #include <cstdlib>
 #include <vector>
-#include <utility>
 
 using namespace std;
 
-srand((unsigned int)time(0));
+//srand((unsigned int)time(0));
 
 const int stateSpace = 12;
 const double gamma = 0.8;
@@ -109,7 +108,7 @@ int chooseAction(int hour, int currState)
 	
   double maxVal = 0.0;
   
-  double rndVal = (float)(rand() % RAND_MAX);
+  double rndVal = ((double)rand() / (double)RAND_MAX);
   
   if (rndVal < epsilon)
     {
@@ -144,7 +143,7 @@ vector<int> getAgentOfferPriceIndices(vector<double>& loadPred, vector<double>& 
   for (int i = 0; i < 24; i++)
     {
       newState.at(i) = generateState(loadPred.at(i), lmpPred.at(i));
-      updateQ(i, rewards.at(i), currentState.at(i), newState.at(i), bids.at(i));
+      updateQ(i, rewards.at(i), currentState.at(i), newState.at(i), bidIndex.at(i));
 
       currentState.at(i) = newState.at(i);
       getActionIndex = chooseAction(i, currentState.at(i));
