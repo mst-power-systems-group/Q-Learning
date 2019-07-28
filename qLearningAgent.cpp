@@ -92,7 +92,7 @@ void updateQ(int hour, double reward, int oldState, int newState, int actionInde
 
 int getRandomAction(int currentState)
 {
-  int randomActionIndex = rand() % (actionSpace - 0 + 1);
+  int randomActionIndex = rand() % (actionSpace - 0 );
   //cout << "The action index is: " << randomActionIndex << endl;
   //newState = takeAction(currentState, randomActionIndex);
   return randomActionIndex;
