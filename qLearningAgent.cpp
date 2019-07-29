@@ -8,8 +8,8 @@ using namespace std;
 //srand((unsigned int)time(0));
 
 const int stateSpace = 12;
-const double gamma = 0.8;
-const double epsilon = 0.2;
+const double gamma = 0.7;
+const double epsilon = 0.1;
 const double alpha = 0.1;
 const int actionSpace = 3;
 //const int episodes = 1000;
