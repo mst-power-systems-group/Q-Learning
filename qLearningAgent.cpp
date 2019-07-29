@@ -68,7 +68,7 @@ int generateState(double load, double lmp)
 	{
 		return 8;
 	}
-	else if (load >= 7501 && load <= 7600 && lmp >=10 && lmp <= 25)
+	else if (load >= 7501 && load <= 7700 && lmp >=10 && lmp <= 25)
 	{
 		return 9;
 	}
