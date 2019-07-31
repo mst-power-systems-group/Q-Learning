@@ -104,7 +104,7 @@ int chooseAction(int hour, int currState)
 {
   int maxQValIndex = 0;
 	
-  double maxVal = 0.0;
+  double maxVal = INT_MIN;
   
   double rndVal = ((double)rand() / (double)RAND_MAX);
   
@@ -118,8 +118,9 @@ int chooseAction(int hour, int currState)
       
       for (int i = 0; i < actionSpace; i++)
 	{
-	  if ((Q.at(hour).at(currState).at(i) - maxVal) > 0.00001)
+	  if ((Q.at(hour).at(currState).at(i) - maxVal) > 0.001)
 	    {
+	      maxVal = Q.at(hour).at(currState).at(i);
 	      maxQValIndex = i;
 	    }
 	}
