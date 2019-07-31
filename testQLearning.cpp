@@ -12,7 +12,7 @@ vector<int> actions(24, 0);
 int findMaxAction(int hour, int state)
 {
   int maxIndex = 0;
-  double maxVal = 0.0;
+  double maxVal = INT_MIN;
 
   for (int i = 0; i < actionSpace; i++)
     {
