@@ -3,7 +3,7 @@
 
 using namespace std;
 
-extern int temperature;
+extern double temperature;
 
 extern int actionSpace;
 
