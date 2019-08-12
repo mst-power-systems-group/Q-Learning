@@ -9,9 +9,9 @@ using namespace std;
 
 const int stateSpace = 12;
 const double gamma = 0.7;
-const double epsilon = 0.2;
+const double epsilon = 0.3;
 //double temperature = 10.0;
-const double alpha = 0.1;
+const double alpha = 0.2;
 const int actionSpace = 3;
 double rndVal;
 bool random;
