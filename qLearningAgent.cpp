@@ -104,7 +104,7 @@ double findMax(int hour, int state)
 
 void updateQ(int hour, double reward, int oldState, int newState, int actionIndex)
 {
-  double newQ = Q.at(hour).at(oldState).at(actionIndex) + alpha * (reward + gamma * (findMax(hour, newState) - Q.at(hour).at(oldState).at(actionIndex)));
+  double newQ = Q.at(hour).at(oldState).at(actionIndex) + alpha * (reward + gamma * findMax(hour, newState) - Q.at(hour).at(oldState).at(actionIndex));
 	
   Q.at(hour).at(oldState).at(actionIndex) = newQ;
 }
