@@ -31,7 +31,7 @@ vector<int> bidIndex(24, 0);
 
 //vector<double> lmp(24, 0.0);
 
-vector<double> getActionProbs(int hour, int state);
+//vector<double> getActionProbs(int hour, int state);
 
 
 
