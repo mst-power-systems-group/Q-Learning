@@ -8,11 +8,13 @@ using namespace std;
 //srand((unsigned int)time(0));
 
 const int stateSpace = 12;
-const double gamma = 0.8;
-//const double epsilon = 0.2;
-double temperature = 10.0;
+const double gamma = 0.7;
+const double epsilon = 0.2;
+//double temperature = 10.0;
 const double alpha = 0.1;
 const int actionSpace = 3;
+double rndVal;
+bool random;
 //const int episodes = 1000;
 
 vector<int> currentState(24, 1);
@@ -82,24 +84,40 @@ int generateState(double load, double lmp)
 	else
 		return 11;
 }
+
+double findMax(int hour, int state)
+{
+  double max = DBL_MIN;
+  for (int i = 0; i < actionSpace; i++)
+  {
+     if ((Q.at(hour).at(state).at(i) - max) > 0.001)
+     {
+	max = Q.at(hour).at(state).at(i);
+     }
+	  
+  }
+
+	
+  return max;
+}
 	
 
 void updateQ(int hour, double reward, int oldState, int newState, int actionIndex)
 {
-  double newQ = (1 - alpha) * Q.at(hour).at(oldState).at(actionIndex) + alpha * (reward + gamma * newState );
+  double newQ = Q.at(hour).at(oldState).at(actionIndex) + alpha * (reward + gamma * (findMax(hour, newState) - Q.at(hour).at(oldState).at(actionIndex)));
 	
   Q.at(hour).at(oldState).at(actionIndex) = newQ;
 }
 	
 	
 
-/**int getRandomAction(int currentState)
+int getRandomAction(int currentState)
 {
   int randomActionIndex = rand() % (actionSpace - 0 );
   //cout << "The action index is: " << randomActionIndex << endl;
   //newState = takeAction(currentState, randomActionIndex);
   return randomActionIndex;
-}**/
+}
   
   
 
@@ -107,14 +125,14 @@ int chooseAction(int hour, int currState)
 {
   int maxQValIndex = 0;
 	
-  //double maxVal = INT_MIN;
-  double cumulativeProb = 0.0;
-  vector<double> probs(7);
-  probs = getActionProbs(hour, currState);
+  double maxVal = INT_MIN;
+  //double cumulativeProb = 0.0;
+  //vector<double> probs(7);
+  //probs = getActionProbs(hour, currState);
   
-  double rndVal = ((double)rand() / (double)RAND_MAX);
+  
 
-  for (int i = 0; i < probs.size(); i++)
+ /** for (int i = 0; i < probs.size(); i++)
   {
      cumulativeProb += probs.at(i);
      if (cumulativeProb > rndVal)
@@ -122,9 +140,9 @@ int chooseAction(int hour, int currState)
 	maxQValIndex = i;
 	break;
      }
-  }
+  }**/
   
- /** if (rndVal < epsilon)
+ if (random)
     {
      maxQValIndex = getRandomAction(currState);
     }
@@ -140,7 +158,7 @@ int chooseAction(int hour, int currState)
 	      maxQValIndex = i;
 	    }
 	}
-    } **/
+    }
 
   return maxQValIndex;
   }
@@ -151,7 +169,17 @@ vector<int> getAgentOfferPriceIndices(vector<double>& loadPred, vector<double>& 
 {
 
   int getActionIndex;
+	
+  rndVal = ((double)rand() / (double)RAND_MAX);
 
+  if (rndVal < epsilon)
+  {
+    random = true;
+  }
+  else
+  {
+    random = false;
+  }
 
   
   
@@ -159,6 +187,8 @@ vector<int> getAgentOfferPriceIndices(vector<double>& loadPred, vector<double>& 
     {
       newState.at(i) = generateState(loadPred.at(i), lmpPred.at(i));
       updateQ(i, rewards.at(i), currentState.at(i), newState.at(i), bidIndex.at(i));
+	  
+
 
       currentState.at(i) = newState.at(i);
       getActionIndex = chooseAction(i, currentState.at(i));
