@@ -37,47 +37,47 @@ vector<int> bidIndex(24, 0);
 
 int generateState(double load, double lmp)
 {
-	if (load >= 4000 && load <= 4900 && lmp >=0 && lmp <= 7)
+	if (load >= 4000 && load <= 4999 && lmp >=0 && lmp <= 10)
 	{
 		return 0;
 	}
-	else if (load >= 4901 && load <= 5300 && lmp >=6 && lmp <= 18)
+	else if (load >= 4000 && load <= 4999 && lmp >=11 && lmp <= 30)
 	{
 		return 1;
 	}
-	else if (load >= 5301 && load <= 5600 && lmp >=5 && lmp <= 21)
+	else if (load >= 4000 && load <= 4999 && lmp >=31 && lmp <= 80)
 	{
 		return 2;
 	}
-	else if (load >= 5601 && load <= 5900 && lmp >=12 && lmp <= 24)
+	else if (load >= 5000 && load <= 5999 && lmp >=0 && lmp <= 10)
 	{
 		return 3;
 	}
-	else if (load >= 5901 && load <= 6600 && lmp >=10 && lmp <= 20)
+	else if (load >= 5000 && load <= 5999 && lmp >=11 && lmp <= 30)
 	{
 		return 4;
 	}
-	else if (load >= 6601 && load <= 6800 && lmp >=10 && lmp <= 20)
+	else if (load >= 5000 && load <= 5999 && lmp >=31 && lmp <= 80)
 	{
 		return 5;
 	}
-	else if (load >= 6801 && load <= 7300 && lmp >=12 && lmp <= 24)
+	else if (load >= 6000 && load <= 6999 && lmp >=0 && lmp <= 10)
 	{
 		return 6;
 	}
-	else if (load >= 7301 && load <= 7400 && lmp >=10 && lmp <= 20)
+	else if (load >= 6000 && load <= 6999 && lmp >=11 && lmp <= 30)
 	{
 		return 7;
 	}
-	else if (load >= 7401 && load <= 7500 && lmp >=8 && lmp <= 30)
+	else if (load >= 6000 && load <= 6999 && lmp >=31 && lmp <= 80)
 	{
 		return 8;
 	}
-	else if (load >= 7501 && load <= 7700 && lmp >=10 && lmp <= 25)
+	else if (load >= 7000 && load <= 8500 && lmp >=0 && lmp <= 10)
 	{
 		return 9;
 	}
-	else if (load >= 7701 && load <= 7900 && lmp >=12 && lmp <= 30)
+	else if (load >= 7000 && load <= 8500 && lmp >=11 && lmp <= 30)
 	{
 		return 10;
 	}
