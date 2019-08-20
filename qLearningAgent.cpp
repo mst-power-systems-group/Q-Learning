@@ -7,7 +7,7 @@ using namespace std;
 
 //srand((unsigned int)time(0));
 
-const int stateSpace = 12;
+const int stateSpace = 28;
 const double gamma = 0.7;
 const double epsilon = 0.3;
 //double temperature = 10.0;
@@ -37,52 +37,121 @@ vector<int> bidIndex(24, 0);
 
 int generateState(double load, double lmp)
 {
-	if (load >= 4000 && load <= 4999 && lmp >=0 && lmp <= 10)
+	if (load >= 4000 && load <= 4999 && lmp >=0 && lmp <= 5)
 	{
 		return 0;
 	}
-	else if (load >= 4000 && load <= 4999 && lmp > 10 && lmp <= 30)
+	else if (load >= 4000 && load <= 4999 && lmp > 5 && lmp <= 10)
 	{
 		return 1;
 	}
-	else if (load >= 4000 && load <= 4999 && lmp >30 && lmp <= 80)
+	else if (load >= 4000 && load <= 4999 && lmp >10 && lmp <= 15)
 	{
 		return 2;
 	}
-	else if (load > 4999 && load <= 5999 && lmp >=0 && lmp <= 10)
+	else if (load >= 4000 && load <= 4999 && lmp >15 && lmp <= 20)
 	{
 		return 3;
 	}
-	else if (load >4999 && load <= 5999 && lmp >10 && lmp <= 30)
+	else if (load >= 4000 && load <= 4999 && lmp >20 && lmp <= 25)
 	{
 		return 4;
 	}
-	else if (load >4999 && load <= 5999 && lmp >30 && lmp <= 80)
+	else if (load >= 4000 && load <= 4999 && lmp >=50 && lmp <= 60)
 	{
 		return 5;
 	}
-	else if (load >5999 && load <= 6999 && lmp >=0 && lmp <= 10)
+	else if (load >= 4000 && load <= 4999 && lmp >60 && lmp <= 70)
 	{
 		return 6;
 	}
-	else if (load >5999 && load <= 6999 && lmp >10 && lmp <= 30)
+	else if (load > 4999 && load <= 5999 && lmp >=0 && lmp <= 5)
 	{
 		return 7;
 	}
-	else if (load >5999 && load <= 6999 && lmp >30 && lmp <= 80)
+	else if (load > 4999 && load <= 5999 && lmp >5 && lmp <= 10)
 	{
 		return 8;
 	}
-	else if (load >6999 && load <= 8500 && lmp >=0 && lmp <= 10)
+	else if (load > 4999 && load <= 5999 && lmp >10 && lmp <= 15)
 	{
 		return 9;
 	}
-	else if (load >6999 && load <= 8500 && lmp >10 && lmp <= 30)
+	else if (load > 4999 && load <= 5999 && lmp >15 && lmp <= 20)
 	{
 		return 10;
 	}
-	else
+	else if (load > 4999 && load <= 5999 && lmp >20 && lmp <= 25)
+	{
 		return 11;
+	}
+	else if (load > 4999 && load <= 5999 && lmp >=50 && lmp <= 60)
+	{
+		return 12;
+	}
+	else if (load >4999 && load <= 5999 && lmp >60 && lmp <= 70)
+	{
+		return 13;
+	}
+	
+	else if (load >5999 && load <= 6999 && lmp >=0 && lmp <= 5)
+	{
+		return 14;
+	}
+	else if (load >5999 && load <= 6999 && lmp >5 && lmp <= 10)
+	{
+		return 15;
+	}
+	else if (load >5999 && load <= 6999 && lmp >10 && lmp <= 15)
+	{
+		return 16;
+	}
+	else if (load >5999 && load <= 6999 && lmp >15 && lmp <=20)
+	{
+		return 17;
+	}
+	else if (load >5999 && load <= 6999 && lmp >20 && lmp <= 25)
+	{
+		return 18;
+	}
+	else if (load >5999 && load <= 6999 && lmp >=50 && lmp <= 60)
+	{
+		return 19;
+	}
+	else if (load >5999 && load <= 6999 && lmp >60 && lmp <= 70)
+	{
+		return 20;
+	}
+	else if (load >6999 && load <= 8500 && lmp >=0 && lmp <= 5)
+	{
+		return 21;
+	}
+	else if (load >6999 && load <= 8500 && lmp >5 && lmp <= 10)
+	{
+		return 22;
+	}
+	else if (load >6999 && load <= 8500 && lmp >10 && lmp <= 15)
+	{
+		return 23;
+	}
+	else if (load >6999 && load <= 8500 && lmp >15 && lmp <= 20)
+	{
+		return 24;
+	}
+	else if (load >6999 && load <= 8500 && lmp >20 && lmp <= 25)
+	{
+		return 25;
+	}
+	else if (load >6999 && load <= 8500 && lmp >= 50 && lmp <= 60)
+	{
+		return 26;
+	}
+	else if (load >6999 && load <= 8500 && lmp >60 && lmp <= 70)
+	{
+		return 27;
+	}
+	else
+		break;
 }
 
 double findMax(int hour, int state)
