@@ -5,6 +5,8 @@ seed(1)
 
 rand = False
 
+params.init()
+
 def update_table(hour, curr_state, act, nxt_state, reward):
     
     params.Q_table[hour][curr_state][act] += params.alpha * (reward + params.gamma * np.amax(params.Q_table[hour][nxt_state]) - params.Q_table[hour][curr_state][act])
