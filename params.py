@@ -9,7 +9,16 @@ global gamma = 0.6
 global epsilon = 0.2
 global hour = 24
 
-global current_states = np.zeros(hour)
-global actions = np.ones(hour)
+global current_states = [0] * 24
+global actions = [1] * 24
 
-global Q_table = np.zeros(hour, state_size, action_size)
+global Q_table = []
+
+for i in range(24):
+  row = []
+  for j in range(state_size):
+    column = []
+    for k in range(action_size):
+      column.append(0.0)
+    row.append(column)
+  Q_table.append(row)
