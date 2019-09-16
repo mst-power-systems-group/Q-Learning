@@ -7,7 +7,7 @@ rand = False
 
 params.init()
 
-next_state = []
+next_states = []
 profits = []
 
 def update_table(hour, curr_state, act, nxt_state, reward):
